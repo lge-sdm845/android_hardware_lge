@@ -7,16 +7,17 @@
 package vendor.lge.hardware.biometrics.fingerprint@2.1;
 
 import android.hardware.biometrics.fingerprint@2.1::IBiometricsFingerprint;
-import android.hardware.biometrics.fingerprint@2.1::IBiometricsFingerprintClientCallback;
 import android.hardware.biometrics.fingerprint@2.1::RequestStatus;
+
+import IBiometricsFingerprintClientCallbackEx;
 
 interface ILgeBiometricsFingerprint extends @2.1::IBiometricsFingerprint {
 
-    authenticateEx(uint64_t operationId, uint32_t gid)
+    authenticateEx(vec<uint8_t> challenge, uint32_t gid, uint32_t flags)
         generates (RequestStatus debugErrno);
 
     cancelEx() generates (RequestStatus debugErrno);
 
-    setNotifyEx(IBiometricsFingerprintClientCallback clientCallback)
+    setNotifyEx(IBiometricsFingerprintClientCallbackEx clientCallback)
         generates (uint64_t deviceId);
 };

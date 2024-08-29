@@ -5,6 +5,7 @@ hidl_interface {
     root: "vendor.lge",
     srcs: [
         "ILgeBiometricsFingerprint.hal",
+        "IBiometricsFingerprintClientCallbackEx.hal",
     ],
     interfaces: [
         "android.hardware.biometrics.fingerprint@2.1",
