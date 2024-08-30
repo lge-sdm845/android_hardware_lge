@@ -1,10 +1,32 @@
+soong_config_module_type {
+    name: "lge_fingerprint_service_cc_defaults",
+    module_type: "cc_defaults",
+    config_namespace: "LGE_FINGERPRINT_HAL",
+    bool_variables: ["FPC"],
+    properties: ["cflags"],
+}
+
+lge_fingerprint_service_hal_cc_defaults {
+    name: "lge_fingerprint_hal_defaults",
+    soong_config_variables: {
+        FPC: {
+            cflags: ["-DLGE_FPC_WORKAROUND"],
+        },
+    },
+}
+
 cc_binary {
     name: "android.hardware.biometrics.fingerprint@2.1-service.lge",
-    defaults: ["hidl_defaults"],
+    defaults: [
+        "hidl_defaults",
+        "lge_fingerprint_service_defaults"
+    ],
     init_rc: ["android.hardware.biometrics.fingerprint@2.1-service.lge.rc"],
     vintf_fragments: ["android.hardware.biometrics.fingerprint@2.1-service.lge.xml"],
     vendor: true,
     relative_install_path: "hw",
+
+    include_dirs: ["include"],
     srcs: [
         "BiometricsFingerprint.cpp",
         "service.cpp",
