@@ -18,7 +18,6 @@ android_app {
     name: "QuadDACPanel",
     defaults: [
         "SettingsLibDefaults",
-        "aapt_version_code_defaults",
     ],
     srcs: ["src/**/*.java"],
     resource_dirs: ["res"],
