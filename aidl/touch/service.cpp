@@ -19,11 +19,13 @@ int main() {
 
     ABinderProcess_setThreadPoolMaxThreadCount(0);
 
+#ifdef GLOVEMODE
     std::shared_ptr<GloveMode> glovemode = ndk::SharedRefBase::make<GloveMode>();
 
     const std::string glovemode_instance = std::string() + GloveMode::descriptor + "/default";
     status = AServiceManager_addService(glovemode->asBinder().get(), glovemode_instance.c_str());
     CHECK(status == STATUS_OK);
+#endif
 
     std::shared_ptr<TouchscreenGesture> touchscreengesture = ndk::SharedRefBase::make<TouchscreenGesture>();
     const std::string touchscreengesture_instance = std::string() + TouchscreenGesture::descriptor + "/default";
