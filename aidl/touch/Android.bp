@@ -15,6 +15,13 @@ cc_binary {
     cflags: select(soong_config_variable("LGE_TOUCH", "GLOVEMODE"), {
         any @ flag_val: ["-DGLOVEMODE"],
         default: [],
+    }) + select(soong_config_variable("LGE_TOUCH", "LEGACY_TOUCHSCREEN_INTERFACE_HEADERS"), {
+        any @ flag_val: ["-DLEGACY_TOUCHSCREEN_INTERFACE"],
+        default: [],
+    }),
+    include_dirs: select(soong_config_variable("LGE_TOUCH", "LEGACY_TOUCHSCREEN_INTERFACE_HEADERS"), {
+        any @ flag_val: [flag_val],
+        default: [],
     }),
     srcs: select(soong_config_variable("LGE_TOUCH", "GLOVEMODE"), {
         any: ["GloveMode.cpp"],
